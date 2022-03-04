@@ -1,0 +1,56 @@
+﻿@using PhoneBookUI.Models.ViewModels
+@model List<PersonViewModel>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_LayoutStart.cshtml";
+}
+<div class="form-group">
+    <form action="/Person/Search" method="post">
+        <h4 class="card-title">Arama Yap</h4><br />
+        <input type="text" class="form-control" name="categoryId" placeholder="Kategori ID'ye göre ara" /><br />
+        <input type="text" class="form-control" name="name" placeholder="İsme göre ara" />
+        <br />
+        <input type="submit" value="Ara" class="btn btn-default btn-block float" style="background-color:#46B3AE; color:white;" /><br />
+    </form>
+</div>
+<br />
+
+<h4 class="card-title">Kişi Listesi</h4>
+<br />
+<div class="table">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Adı Soyadı</th>
+                <th>Kategori</th>
+                <th>Telefon Numarası</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.e_id</td>
+                    <td>@item.e_adi_soyadi</td>
+                    <td>@item.e_kategori_adi</td>
+                    <td>@item.e_telefon</td>
+                    <td>
+                        <a href="/Person/Update/@item.e_id" class="btn btn-danger">Düzenle</a>
+                        <a href="/Person/Delete/@item.e_id" class="btn btn-danger">Sil</a>
+                    </td>
+                    @*<td>
+                            <a href="/Category/CategoryList/@item.e_id" class="btn btn-sm btn-default"
+                               style="background-color:powderblue; margin-right: 5px;">
+                                Düzenle
+                            </a>
+                        </td>*@
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
